@@ -79,7 +79,7 @@ class GestorEstudiantes {
 }
 
 // Clase utilitaria para evaluar notas
-class EvaluadorNotas {
+class  LibretaDeNotas {
     public static double promedio(ArrayList<Double> notas) {
         return notas.stream().mapToDouble(Double::doubleValue).average().orElse(0);
     }
@@ -169,9 +169,9 @@ class Menu {
         for (Estudiante alumnos : gestor.obtenerTodos()) {
             System.out.printf("%s => Promedio: %.2f | Máx: %.2f | Mín: %.2f\n",
                     alumnos.getNombre(),
-                    EvaluadorNotas.promedio(alumnos.getNotas()),
-                    EvaluadorNotas.maximo(alumnos.getNotas()),
-                    EvaluadorNotas.minimo(alumnos.getNotas()));
+                    LibretaDeNotas.promedio(alumnos.getNotas()),
+                    LibretaDeNotas.maximo(alumnos.getNotas()),
+                    LibretaDeNotas.minimo(alumnos.getNotas()));
         }
     }
 
@@ -184,7 +184,7 @@ class Menu {
             return;
         }
         double nota = entrada.pedirDecimal("Nota a verificar: ", 0, 7);
-        boolean aprobada = EvaluadorNotas.esAprobatoria(nota, APROBACION);
+        boolean aprobada = LibretaDeNotas.esAprobatoria(nota, APROBACION);
         System.out.println(aprobada ? "Aprobaste" : "Reprobaste");
     }
 
@@ -199,6 +199,6 @@ class Menu {
         double nota = entrada.pedirDecimal("Nota a comparar: ", 0, 7);
         double promedio = gestor.promedioCurso();
         System.out.printf("Promedio del curso: %.2f\n", promedio);
-        System.out.println("Resultado: " + EvaluadorNotas.compararNotaConPromedio(nota, promedio));
+        System.out.println("Resultado: " + LibretaDeNotas.compararNotaConPromedio(nota, promedio));
     }
 }
